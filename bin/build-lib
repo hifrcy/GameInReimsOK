@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+which jq > /dev/null
+
+pushd projects/ng-maphilight >/dev/null
+echo -n "Current version: "
+npm version | grep ng-maphilight
+echo -n "To increment version: "
+npm version --help | head -n1
+bash
+popd >/dev/null
+
+echo
+ng build ng-maphilight
+
+pushd dist/ng-maphilight >/dev/null
+echo 'To publish: npm publish'
+bash
+popd >/dev/null
